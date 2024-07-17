@@ -1,6 +1,9 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
 
+const { initialize, enable } = require('@electron/remote/main');
+initialize();
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -12,9 +15,14 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  enable(mainWindow.webContents);
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
@@ -49,3 +57,4 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+app.allowRendererProcessReuse = false;

@@ -2,11 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>WEBM Screen Recorder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
     <link rel="stylesheet" href="index.css" />
+    <script src="render.js" defer></script>
   </head>
   <body>
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
+    <h1>Screen Recorder</h1>
+    <video></video>
+
+    <button id="startBtn" class="button is-primary" disabled>Start</button>
+    <button id="stopBtn" class="button is-warning" disabled>Stop</button>
+
+    <hr/>
+
+    <button id="videoSelectBtn" class="button is-text">
+      Choose a video Source
+    </button>
   </body>
 </html>
